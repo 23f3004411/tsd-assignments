@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Performance Analysis</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .container {
+            max-width: 960px;
+            margin: 2rem auto;
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #0d6efd;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        pre {
+            background: #e9ecef;
+            padding: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.9em;
+        }
+        code {
+            font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1.5rem auto;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.075);
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #dee2e6;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Performance Analysis Report</h1>
+        
+        <h2>Business Case</h2>
+        <p>
+            This analysis was conducted for a Healthcare company's HR department to understand employee distribution across various departments. The goal is to inform resource allocation, identify departmental strengths, and guide future recruitment strategies.
+        </p>
+        
+        <hr>
+
+        <h2>Python Code</h2>
+        <p>The following Python script was used to load the data, calculate frequencies, and generate the visualization.</p>
+        <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+import io
+
+# Email for verification: 23f3004411@ds.study.iitm.ac.in
+
+# Sample data provided by the user as a string
+data_string = '''employee_id,department,region,performance_score,years_experience,satisfaction_rating
+EMP001,Finance,Africa,85.05,14,3.7
+EMP002,Sales,Latin America,75.14,14,3.7
+EMP003,Sales,Middle East,84.57,10,4.5
+EMP004,Operations,North America,80.06,6,4.4
+EMP005,Operations,Europe,86.63,11,3.9
+... (data for 94 employees truncated) ...
+EMP100,Operations,Africa,80.3,11,4.1
+'''
+
+data = io.StringIO(data_string)
+
+# Load the data into a pandas DataFrame
+df = pd.read_csv(data)
+
+# Calculate the frequency count for the "Operations" department
+operations_frequency = df[df['department'] == 'Operations'].shape[0]
+
+# Print the frequency count to the console
+print(f"Frequency of 'Operations' department: {operations_frequency}")
+
+# Create a histogram showing the distribution of departments
+plt.figure(figsize=(10, 6))
+df['department'].value_counts().sort_index().plot(kind='bar', color='skyblue')
+plt.title('Distribution of Employees by Department')
+plt.xlabel('Department')
+plt.ylabel('Number of Employees')
+plt.xticks(rotation=45)
+plt.grid(axis='y', linestyle='--')
+plt.tight_layout()
+plt.savefig('department_distribution.png')
+
+print("Histogram saved as department_distribution.png")
+</code></pre>
+        
+        <hr>
+
+        <h2>Console Output</h2>
+        <p>The script produced the following output, showing the frequency count for the 'Operations' department and confirming the image save.</p>
+        <pre><code>Frequency of 'Operations' department: 21
+Histogram saved as department_distribution.png</code></pre>
+
+        <hr>
+        
+        <h2>Visualization: Employee Distribution by Department</h2>
+        <p>The bar chart below illustrates the total number of employees in each department, providing a clear overview of the workforce distribution. This visual is key for presenting the findings to the executive team.</p>
+        <img src="department_distribution.png" alt="A bar chart showing the number of employees in different departments like Engineering, Finance, Marketing, Operations, and Sales.">
+        
+    </div>
+</body>
+</html>
