@@ -18,6 +18,8 @@ def _():
 
 @app.cell
 def _(mo):
+    # This cell defines the main interactive component: a slider.
+    # Other cells will depend on the value of this slider.
     num_points_slider = mo.ui.slider(
         start=10, stop=200, step=10, value=50, label="Number of Data Points:"
     )
@@ -26,6 +28,8 @@ def _(mo):
 
 @app.cell
 def _(np, num_points_slider, pd):
+    # This cell generates a pandas DataFrame.
+    # Its size is determined by the `num_points_slider` value from the cell above.
     def create_data():
         n = num_points_slider.value
         rng = np.random.default_rng(42)
@@ -41,6 +45,7 @@ def _(np, num_points_slider, pd):
 
 @app.cell
 def _(alt, create_data, mo):
+    # This cell creates the outputs: dynamic markdown text and a scatter plot.
     def create_outputs():
         df, n = create_data() # Call the function from the cell above
     
@@ -74,6 +79,8 @@ def _(alt, create_data, mo):
 
 @app.cell
 def _(create_outputs, mo, num_points_slider):
+    # This cell arranges all the UI elements and outputs for final display.
+    # It gathers the slider and calls the output function to get the markdown and plot.
     markdown, plot = create_outputs()
     mo.vstack(
         [
