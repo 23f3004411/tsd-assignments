@@ -1,5 +1,6 @@
 ---
 marp: true
+theme: gaia
 paginate: true
 header: 'Week 7, MARP Presentation'
 footer: 'Kartik Rajput | 23f3004411@ds.study.iitm.ac.in'
