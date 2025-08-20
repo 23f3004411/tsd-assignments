@@ -56,7 +56,7 @@ Presentation for Software Company
 Just anaother slide
 
 ---
-<!-- backgroundColor: aqua -->
+<!-- _backgroundColor: #123456 -->
 ## Something Something
 
 So good! A+!
